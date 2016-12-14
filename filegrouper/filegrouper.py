@@ -3,7 +3,7 @@ import os
 from filetypes import *
 
 class FileGrouper(object):
-    def __init__(self, dir="", prefix_len=0, types=[]):
+    def __init__(self, dir="", prefix_len=5, types=[]):
         self.directory = dir
         self.prefix_len = prefix_len
         self.type_map = {}
@@ -12,6 +12,7 @@ class FileGrouper(object):
             self.type_map[filetype.typename] = filetype.comp_func
 
         self.groups = []
+        self.walk_directory()
 
     def walk_directory(self):
         curr_group = FileGroup(self.type_map.keys())

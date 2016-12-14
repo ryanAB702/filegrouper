@@ -12,5 +12,4 @@ if __name__ == "__main__":
                           prefix_len=5,
                           types=[silences, lena5min])
 
-    grouper.walk_directory()
  #   print grouper.__dict__
