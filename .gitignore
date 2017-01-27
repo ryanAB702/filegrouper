@@ -3,3 +3,5 @@ sample_data
 .idea
 build
 *.pyc
+Outlier_File_Grouper_Test_Folder
+.DS_Store
