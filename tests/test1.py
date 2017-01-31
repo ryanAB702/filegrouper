@@ -10,6 +10,6 @@ if __name__ == "__main__":
 
     grouper = FileGrouper(dir=input_dir,
                           prefix_len=5,
-                          types=[silences, lena5min])
+                          types=[clan_silences, newclan_merged_final, newclan_merged])
 
  #   print grouper.__dict__
