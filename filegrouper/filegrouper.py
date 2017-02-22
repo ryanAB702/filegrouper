@@ -36,12 +36,8 @@ class FileGrouper(object):
                 if pref in self.groups:
                     if self.group_full(curr_group):
                         curr_group.outliers_extra.append(file)
-                        curr_group.full = True
                     if not self.group_full(curr_group):
                         self.add_file(curr_group, os.path.join(root, file))
-
-        print self.groups
-        print [x for x in self.groups.values() if x.outliers_extra or not self.group_full(x)]
 
     def outliers(self):
         return [x for x in self.groups.values() if x.outliers_extra or not self.group_full(x)]
@@ -54,6 +50,8 @@ class FileGrouper(object):
                 found_empty = True
         if found_empty:
             return False
+        else:
+            group.full = True
         return True
 
     def add_file(self, group, file):
@@ -61,6 +59,7 @@ class FileGrouper(object):
             if func(file):
                 vars(group)[type] = file
                 group.empty = False
+                self.group_full(group)
                 return
 
     def prefix_in_groups(self, prefix):
@@ -84,7 +83,3 @@ class FileGroup(object):
         if input[:len(self.prefix)] == self.prefix:
             return True
         return False
-
-
-
-

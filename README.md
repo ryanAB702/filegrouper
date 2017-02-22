@@ -13,26 +13,29 @@ to return a collection of objects storing the paths to all the groups of clan an
 e.g.:
 
 ```python
+import filegrouper as fg
 
 input_dir = "some_folder"
 
-grouper = FileGrouper(dir=input_dir,
-                          prefix_len=5,
-                          types=[
-                                silences,
-                                lena5min,
-                                clan
+grouper = fg.FileGrouper(dir=input_dir,
+                         prefix_len=5,
+                         types=[
+                                fg.silences,
+                                fg.lena5min,
+                                fg.clan_final
                             ])
 
 
 # member variables of each "group" object are dynamically
 # generated from the "types" provided in the FileGrouper
-# constructor
+# constructor. The grouper.groups member is a dict of
+# prefix keys to FileGroup objects
 
-for group in grouper.groups:
-    print group.clan
+for prefix, group in grouper.groups.items():
     print group.lena5min
     print group.silences
+    print group.clan_final
+
 
 
 ```
